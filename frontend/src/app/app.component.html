@@ -1,0 +1,37 @@
+<div class="recipe-container">
+  <header class="recipe-header">
+    <h1>Recipe Manager</h1>
+  </header>
+
+  <div class="recipe-content">
+    <!-- Recipe Form -->
+    <app-recipe-form
+      [editingRecipe]="editingRecipe"
+      (saveRecipe)="onSaveRecipe($event)"
+      (clearForm)="onClearForm()"
+      (ingredientsChanged)="onIngredientsChanged($event)"
+      (ingredientNotFound)="onIngredientNotFound($event)">
+    </app-recipe-form>
+
+    <!-- Nutrition Display -->
+    <app-nutrition-display
+      [nutritionData]="nutritionData"
+      [showNutrition]="nutritionData !== null">
+    </app-nutrition-display>
+  </div>
+
+  <!-- Recipe List -->
+  <app-recipe-list
+    [savedRecipes]="savedRecipes"
+    (editRecipe)="onEditRecipe($event)"
+    (deleteRecipe)="onDeleteRecipe($event)">
+  </app-recipe-list>
+
+  <!-- Add Ingredient Modal -->
+  <app-add-ingredient-modal
+    [showModal]="showAddIngredientModal"
+    [ingredientName]="modalIngredientName"
+    (closeModal)="onCloseModal()"
+    (ingredientAdded)="onIngredientAdded($event)">
+  </app-add-ingredient-modal>
+</div>

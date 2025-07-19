@@ -1,0 +1,59 @@
+<!-- Saved Recipes -->
+<div class="saved-recipes-section" *ngIf="savedRecipes.length > 0">
+    <h2>Saved Recipes</h2>
+    <div class="recipes-grid">
+    <div 
+        class="recipe-card" 
+        *ngFor="let recipe of savedRecipes; let i = index">
+        <div class="recipe-card-header">
+        <h3 class="recipe-card-title">{{ recipe.title }}</h3>
+        <div class="recipe-card-actions">
+            <button
+            class="btn btn-edit"
+            (click)="onEditRecipe(recipe, i)">
+            Edit
+            </button>
+            <button
+            class="btn btn-delete"
+            (click)="onDeleteRecipe(i)">
+            Delete
+            </button>
+        </div>
+        </div>
+        
+        <div class="recipe-card-content">
+        <div class="recipe-section">
+            <h4>Ingredients ({{ recipe.ingredients.length }})</h4>
+            <ul class="recipe-list">
+            <li *ngFor="let ingredient of recipe.ingredients.slice(0, 3)">
+                {{ ingredient }}
+            </li>
+            <li *ngIf="recipe.ingredients.length > 3" class="more-items">
+                +{{ recipe.ingredients.length - 3 }} more...
+            </li>
+            </ul>
+        </div>
+        
+        <div class="recipe-section">
+            <h4>Steps ({{ recipe.steps.length }})</h4>
+            <ol class="recipe-list">
+            <li *ngFor="let step of recipe.steps.slice(0, 2)">
+                {{ step.length > 60 ? (step.substring(0, 60) + '...') : step }}
+            </li>
+            <li *ngIf="recipe.steps.length > 2" class="more-items">
+                +{{ recipe.steps.length - 2 }} more steps...
+            </li>
+            </ol>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Empty State -->
+<div class="empty-state" *ngIf="savedRecipes.length === 0">
+    <div class="empty-state-content">
+    <h3>No recipes yet!</h3>
+    <p>Create your first recipe using the form above.</p>
+    </div>
+</div>

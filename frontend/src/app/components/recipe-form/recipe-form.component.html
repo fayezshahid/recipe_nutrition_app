@@ -1,0 +1,105 @@
+<div class="recipe-form-section">
+    <div class="recipe-actions">
+    <button 
+        class="btn btn-secondary" 
+        (click)="onClearForm()"
+        [disabled]="isFormEmpty()">
+        Clear Form
+    </button>
+    <button 
+        class="btn btn-primary" 
+        (click)="onSaveRecipe()"
+        [disabled]="!isFormValid()">
+        {{ editingRecipe ? 'Update Recipe' : 'Save Recipe' }}
+    </button>
+    </div>
+
+    <form class="recipe-form" (ngSubmit)="onSaveRecipe()">
+    <!-- Recipe Title -->
+    <div class="form-group">
+        <label for="recipeTitle">Recipe Title</label>
+        <input
+        id="recipeTitle"
+        type="text"
+        class="form-control"
+        [(ngModel)]="recipeForm.title"
+        name="title"
+        placeholder="Enter recipe title..."
+        (input)="persistFormData()">
+    </div>
+
+    <!-- Ingredients Section -->
+    <div class="form-group">
+        <label>Ingredients</label>
+        <div class="ingredient-input-group">
+        <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newIngredient"
+            name="newIngredient"
+            placeholder="Add ingredient..."
+            (keypress)="onIngredientKeyPress($event)"
+            (input)="persistFormData()">
+        <button
+            type="button"
+            class="btn btn-add"
+            (click)="addIngredient()"
+            [disabled]="!newIngredient.trim()">
+            Add
+        </button>
+        </div>
+        
+        <div class="ingredients-list" *ngIf="recipeForm.ingredients.length > 0">
+        <div 
+            class="ingredient-item" 
+            *ngFor="let ingredient of recipeForm.ingredients; let i = index">
+            <span class="ingredient-text">{{ ingredient }}</span>
+            <button
+            type="button"
+            class="btn btn-remove"
+            (click)="removeIngredient(i)">
+            ×
+            </button>
+        </div>
+        </div>
+    </div>
+
+    <!-- Steps Section -->
+    <div class="form-group">
+        <label>Instructions</label>
+        <div class="step-input-group">
+        <textarea
+            class="form-control textarea-step"
+            [(ngModel)]="newStep"
+            name="newStep"
+            placeholder="Add cooking step..."
+            (input)="persistFormData()"
+            rows="3"></textarea>
+        <button
+            type="button"
+            class="btn btn-add"
+            (click)="addStep()"
+            [disabled]="!newStep.trim()">
+            Add Step
+        </button>
+        </div>
+        
+        <div class="steps-list" *ngIf="recipeForm.steps.length > 0">
+        <div 
+            class="step-item" 
+            *ngFor="let step of recipeForm.steps; let i = index">
+            <div class="step-number">{{ i + 1 }}</div>
+            <div class="step-content">
+            <p class="step-text">{{ step }}</p>
+            <button
+                type="button"
+                class="btn btn-remove"
+                (click)="removeStep(i)">
+                Remove
+            </button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </form>
+</div>

@@ -5,23 +5,35 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Config;
 
 use  App\Models\Ingredient;
 
 class IngredientController extends Controller
 {
+    private $username;
+    private $password;
+    private $apiUrl;
+
+    public function __construct()
+    {
+        $this->username = config('ingredientapi.username');
+        $this->password = config('ingredientapi.password');
+        $this->apiUrl = config('ingredientapi.url');
+    }
+
     public function index()
     {
-        $response = Http::withBasicAuth('mfs', 'lzZ5ligBgA')
-        ->get('https://interview.workcentrix.de/ingredients.php');
+        $response = Http::withBasicAuth($this->username, $this->password)
+            ->get($this->apiUrl);
 
         return $response->json();
     }
 
     public function search($name)
     {
-        $response = Http::withBasicAuth('mfs', 'lzZ5ligBgA')
-            ->get('https://interview.workcentrix.de/ingredients.php', [
+        $response = Http::withBasicAuth($this->username, $this->password)
+            ->get($this->apiUrl, [
                 'ingredient' => $name
             ]);
 
@@ -30,7 +42,6 @@ class IngredientController extends Controller
 
     public function store(Request $request)
     {
-        // Validate input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'carbs' => 'required|numeric|min:0',
@@ -38,7 +49,6 @@ class IngredientController extends Controller
             'protein' => 'required|numeric|min:0',
         ]);
 
-        // Prepare form data
         $formParams = [
             'name' => $validated['name'],
             'carbs' => $validated['carbs'],
@@ -46,12 +56,10 @@ class IngredientController extends Controller
             'protein' => $validated['protein'],
         ];
 
-        // Send POST request with Basic Auth and x-www-form-urlencoded
-        $response = Http::withBasicAuth('mfs', 'lzZ5ligBgA')
-                        ->asForm()
-                        ->post('https://interview.workcentrix.de/ingredients.php', $formParams);
+        $response = Http::withBasicAuth($this->username, $this->password)
+            ->asForm()
+            ->post($this->apiUrl, $formParams);
 
-        // Handle response
         if ($response->successful()) {
             Ingredient::create([
                 'name' => $validated['name']

@@ -1,0 +1,218 @@
+/* Recipe Form Section */
+.recipe-form-section {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Recipe Actions (Form Buttons at Top) */
+.recipe-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Layout */
+.recipe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 1rem;
+}
+
+/* Input Controls */
+.form-control {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.textarea-step {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Ingredient Input Group */
+.ingredient-input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.ingredient-input-group .form-control {
+  flex: 1;
+}
+
+/* Step Input Group */
+.step-input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.step-input-group .form-control {
+  flex: 1;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #cbd5e0;
+  transform: translateY(-1px);
+}
+
+.btn-add {
+  background: #48bb78;
+  color: white;
+  white-space: nowrap;
+}
+
+.btn-add:hover:not(:disabled) {
+  background: #38a169;
+  transform: translateY(-1px);
+}
+
+.btn-remove {
+  background: #f56565;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  min-width: auto;
+}
+
+.btn-remove:hover {
+  background: #e53e3e;
+}
+
+/* Ingredients List */
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #f7fafc;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.ingredient-text {
+  font-weight: 500;
+  color: #2d3748;
+}
+
+/* Steps List */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.step-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f7fafc;
+  border-radius: 8px;
+  border-left: 4px solid #48bb78;
+}
+
+.step-number {
+  background: #48bb78;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.step-text {
+  margin: 0;
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .ingredient-input-group,
+  .step-input-group {
+    flex-direction: column;
+  }
+
+  .recipe-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

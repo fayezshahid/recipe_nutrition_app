@@ -1,0 +1,17 @@
+<div class="nutrition-section" *ngIf="showNutrition && nutritionData">
+    <h3>Nutritional Information</h3>
+    <div class="nutrition-grid">
+    <div class="nutrition-item">
+        <span class="nutrition-label">Protein</span>
+        <span class="nutrition-value">{{ nutritionData.protein || 0 }}g</span>
+    </div>
+    <div class="nutrition-item">
+        <span class="nutrition-label">Carbs</span>
+        <span class="nutrition-value">{{ nutritionData.carbs || 0 }}g</span>
+    </div>
+    <div class="nutrition-item">
+        <span class="nutrition-label">Fat</span>
+        <span class="nutrition-value">{{ nutritionData.fat || 0 }}g</span>
+    </div>
+    </div>
+</div>
